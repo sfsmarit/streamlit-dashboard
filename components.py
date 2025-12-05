@@ -53,6 +53,6 @@ def render_available_ports(start=8501, stop=8699):
                  help="It is recommended to keep 8501-8599 open for test apps")
     st.markdown(
         f"""
-        > It is recommended to keep ports 8501-8599 open for test apps.
+        > It is recommended to keep ports 8501-8600 open for test apps.
         """
     )
