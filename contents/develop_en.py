@@ -8,7 +8,6 @@ nl = "  "
 HOST = socket.gethostname()
 
 st.title("Streamlit Development Guide")
-st.set_page_config(page_title="Streamlit Server", page_icon=":signal_strength:", layout="centered")
 
 components.render_resouce_usage()
 components.render_available_ports()
