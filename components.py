@@ -35,14 +35,14 @@ def render_resouce_usage():
             st.progress(int(min(disk.percent, 100)))
 
 
-def render_available_ports():
+def render_available_ports(start=8501, stop=8699):
     # Used port
     data = []
     for dir in config.ROOT_DIRS:
         data += ut.collect_app_info(dir)
     used_ports = [d["port"] for d in data]
     available_ports = []
-    for port in range(8601, 8700):
+    for port in range(start, stop):
         if port in used_ports:
             continue
         if ut.can_bind(port):
@@ -51,3 +51,8 @@ def render_available_ports():
     st.markdown("#### Available Ports")
     st.selectbox("", available_ports, label_visibility="collapsed",
                  help="It is recommended to keep 8501-8599 open for test apps")
+    st.markdown(
+        f"""
+        > It is recommended to keep ports 8501-8599 open for test apps.
+        """
+    )

@@ -9,7 +9,7 @@ first_columns = ["app", "url", "status"]
 hidden_columns = ["visible"]
 
 
-st.title("Streamlit Web Apps")
+st.title("Streamlit Dashboard")
 st.set_page_config(page_title="Streamlit Server", page_icon=":signal_strength:", layout="wide")
 
 # データの取得

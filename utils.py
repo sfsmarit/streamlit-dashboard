@@ -12,7 +12,7 @@ def generate_email_from_name(name: str) -> str:
     return f"{address}@skyworksinc.com"
 
 
-def check_TCP_connection(port: int, timeout: float = 0.2) -> bool:
+def check_TCP_connection(port: int, timeout: float = 0.05) -> bool:
     """TCPコネクションが張れるかを確認（ポートが開いているか）"""
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.settimeout(timeout)
@@ -65,7 +65,7 @@ def collect_app_info(root_dir: str) -> list[dict]:
         url = f"http://{HOST}:{port}"
         info["url"] = url
 
-        info["status"] = "active" if check_TCP_connection(info["port"]) else "inactive"
+        info["status"] = "enabled" if check_TCP_connection(info["port"]) else "disabled"
 
         data.append(info)
 
