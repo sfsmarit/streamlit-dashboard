@@ -4,118 +4,119 @@ import socket
 import common.components as components
 
 
-nl = "  "
-HOST = socket.gethostname()
+def render():
+    nl = "  "
+    HOST = socket.gethostname()
 
-st.title("Streamlit Development Guide")
+    st.title("Streamlit Development Guide")
 
-placeholder_resource = st.empty()
-placeholder_port = st.empty()
+    placeholder_resource = st.empty()
+    placeholder_port = st.empty()
 
-st.markdown("---")
+    st.markdown("---")
 
-st.subheader("1. Obtain a Streamlit Server Account", divider=True)
-st.markdown(
-    f"""
-    IT Service Desk{nl}
-    https://skyworksinc.atlassian.net/servicedesk/customer/portal/9/group/37/create/229 {nl}
-    
-    ```
-    [Summary]
-    Request for login access to {HOST}
-    
-    [Description]
-    I would like to release Streamlit Web application and request the following access permissions:
-    1. Login accress to {HOST}
-    2. Write permission to /data
-    ```
+    st.subheader("1. Obtain a Streamlit Server Account", divider=True)
+    st.markdown(
+        f"""
+        IT Service Desk{nl}
+        https://skyworksinc.atlassian.net/servicedesk/customer/portal/9/group/37/create/229 {nl}
+        
+        ```
+        [Summary]
+        Request for login access to {HOST}
+        
+        [Description]
+        I would like to release Streamlit Web application and request the following access permissions:
+        1. Login accress to {HOST}
+        2. Write permission to /data
+        ```
 
-    If you need to use a database, please submit a separate ticket for DB access permissions.
-    """
-)
+        If you need to use a database, please submit a separate ticket for DB access permissions.
+        """
+    )
 
-st.subheader("2. App Development & Deployment", divider=True)
-st.markdown(
-    f"""
-    Detailed instructions are available on this page:{nl}
-    https://app-startguide.streamlit.app/
-    
-    When deploying, create a `streamlit` directory in your home directory and place your app inside it.
-    ```bash
-    cd
-    mkdir streamlit
-    cd streamlit
-    git clone https://github.com/<UserName>/sample-app.git
-    ```
-    """
-)
+    st.subheader("2. App Development & Deployment", divider=True)
+    st.markdown(
+        f"""
+        Detailed instructions are available on this page:{nl}
+        https://app-startguide.streamlit.app/
+        
+        When deploying, create a `streamlit` directory in your home directory and place your app inside it.
+        ```bash
+        cd
+        mkdir streamlit
+        cd streamlit
+        git clone https://github.com/<UserName>/sample-app.git
+        ```
+        """
+    )
 
-st.subheader("3. Fixing the Port", divider=True)
-st.markdown(
-    f"""
-    ```bash
-    # Navigate to the project directory
-    cd ~/streamlit/sample-app/
-    
-    # Create .streamlit/config.toml
-    mkdir .streamlit
-    touch .streamlit/config.toml
-    ```    
-    Edit config.toml to specify the port:
-    ```toml
-    [server]
-    port=8650
-    ```    
-    For available ports, refer to [Available Ports] at the top of the page.
-    """
-)
+    st.subheader("3. Fixing the Port", divider=True)
+    st.markdown(
+        f"""
+        ```bash
+        # Navigate to the project directory
+        cd ~/streamlit/sample-app/
+        
+        # Create .streamlit/config.toml
+        mkdir .streamlit
+        touch .streamlit/config.toml
+        ```    
+        Edit config.toml to specify the port:
+        ```toml
+        [server]
+        port=8650
+        ```    
+        For available ports, refer to [Available Ports] at the top of the page.
+        """
+    )
 
-st.subheader("4. Place info.yaml", divider=True)
-st.markdown(
-    f"""
-    Ensure your app information is displayed in the Streamlit Server app list.
-    ```bash
-    # Navigate to the project directory
-    cd ~/streamlit/sample-app/
+    st.subheader("4. Place info.yaml", divider=True)
+    st.markdown(
+        f"""
+        Ensure your app information is displayed in the Streamlit Server app list.
+        ```bash
+        # Navigate to the project directory
+        cd ~/streamlit/sample-app/
 
-    # Copy info.yaml
-    cp /home/marit/template/info.yaml ./
-    ```    
-    Edit info.yaml:
-    ```yaml
-    app: "AppName"
-    description: ""
-    intended_users: ""
-    developer: "YourName"
-    email: ""
-    visible: true
-    ```    
-    """
-)
+        # Copy info.yaml
+        cp /home/marit/template/info.yaml ./
+        ```    
+        Edit info.yaml:
+        ```yaml
+        app: "AppName"
+        description: ""
+        intended_users: ""
+        developer: "YourName"
+        email: ""
+        visible: true
+        ```    
+        """
+    )
 
-st.subheader("5. Start the App", divider=True)
-st.markdown(
-    f"""
-    Start the app:
-    ```bash
-    # nohup: Keeps the process running after logout
-    # & : Run in the background
-    nohup <path_to_venv>/bin/streamlit run main.py &
-    ```
+    st.subheader("5. Start the App", divider=True)
+    st.markdown(
+        f"""
+        Start the app:
+        ```bash
+        # nohup: Keeps the process running after logout
+        # & : Run in the background
+        nohup <path_to_venv>/bin/streamlit run main.py &
+        ```
 
-    Check running apps:
-    ```bash
-    pgrep -a streamlit
-    # 144000 /home/marit/streamlit/streamlit/bin/python3 ../streamlit/bin/streamlit run main.py{nl}
-    # 144010 /home/marit/streamlit/streamlit/bin/python3 ../streamlit/bin/streamlit run main.py
-    ```
+        Check running apps:
+        ```bash
+        pgrep -a streamlit
+        # 144000 /home/marit/streamlit/streamlit/bin/python3 ../streamlit/bin/streamlit run streamlit_dashboard.py{nl}
+        # 144010 /home/marit/streamlit/streamlit/bin/python3 ../streamlit/bin/streamlit run tapeout_checklist.py
+        ```
 
-    Stop the app:
-    ```bash
-    kill 144010
-    ```
-    """
-)
+        Stop the app:
+        ```bash
+        kill 144010
+        ```
+        """
+    )
 
-components.render_resouce_usage(placeholder_resource)
-components.render_available_ports(placeholder_port)
+    components.render_resouce_usage(placeholder_resource)
+    components.render_available_ports(placeholder_port)
