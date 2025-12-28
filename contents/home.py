@@ -29,12 +29,16 @@ columns = first_columns + [col for col in unique_keys if col not in first_column
 df = pd.DataFrame(data, columns=columns)
 df = df.sort_values(by="port")
 
+column_config = {
+    "url": st.column_config.LinkColumn(label="url", display_text=":material/open_in_new:")
+}
+
 df1 = df[df["test"] == False].drop(columns=hidden_columns)
 st.subheader("Released")
-st.table(df1)
+st.data_editor(df1, width="stretch", column_config=column_config)
 
 df2 = df[df["test"] == True].drop(columns=hidden_columns)
 if len(df2):
     st.markdown("---")
     st.subheader("Test")
-    st.table(df2)
+    st.data_editor(df2, width="stretch", column_config=column_config)
