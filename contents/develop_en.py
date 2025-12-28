@@ -39,6 +39,13 @@ def render():
         Detailed explanation is available on this page:{nl}
         https://app-startguide.streamlit.app/
         
+        To log in via ssh from a Windows PC, you need to go through the IRV server:
+        ```bash
+        ssh <UserName>@sftp_irv
+        # On the remote server
+        ssh http://uw-v-appstm-000.nb-engr.skyworksinc.com
+        ```
+
         When deploying, place the app in `/data/streamlit/`.
         ```bash
         cd /data/streamlit/
@@ -80,7 +87,7 @@ def render():
         cd /data/streamlit/sample-app/
 
         # Copy info.yaml
-        cp /home/marit/template/info.yaml ./
+        cp /data/streamlit/dashboard/info.yaml ./
         ```    
 
         Edit info.yaml:

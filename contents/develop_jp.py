@@ -39,6 +39,13 @@ def render():
         こちらのページで詳しく解説しています。{nl}
         https://app-startguide.streamlit.app/
         
+        Windows PC から`ssh`でログインするには、IRV サーバを経由します。
+        ```bash
+        ssh <UserName>@sftp_irv
+        # ログイン先で
+        ssh http://uw-v-appstm-000.nb-engr.skyworksinc.com
+        ```
+        
         デプロイするときは `/data/streamlit/` にアプリを配置してください。
         ```bash
         cd /data/streamlit/
@@ -80,7 +87,7 @@ def render():
         cd /data/streamlit/sample-app/
 
         # info.yaml をコピー
-        cp /home/marit/template/info.yaml ./
+        cp /data/streamlit/dashboard/info.yaml ./
         ```    
 
         info.yaml を編集します。
