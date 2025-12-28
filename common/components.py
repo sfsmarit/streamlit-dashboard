@@ -36,17 +36,19 @@ def render_resouce_usage(placeholder):
             st.progress(int(min(disk.percent, 100)))
 
 
-def render_available_ports(placeholder, start=8501, stop=8699):
+def render_available_ports(placeholder):
     data = ut.collect_app_info(check_status=False)
 
     used_ports = [d["port"] for d in data]
     available_ports = []
 
-    for port in range(start, stop+1):
-        if port in used_ports:
-            continue
-        if ut.can_bind(port):
-            available_ports.append(port)
+    port_ranges = [[8601, 8699], [8501, 8600]]
+    for start, stop in port_ranges:
+        for port in range(start, stop+1):
+            if port in used_ports:
+                continue
+            if ut.can_bind(port):
+                available_ports.append(port)
 
     with placeholder.container():
         st.markdown("#### Available Ports")
